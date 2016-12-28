@@ -9,19 +9,14 @@ function statement(customer, movies) {
     return result;
 
     function totalAmount() {
-        let result = 0;
-        for (let r of customer.rentals) {
-            result += amountFor(r);
-        }
-        return result;
+        return customer.rentals
+            .reduce((total, rental) => total + amountFor(rental), 0);
     }
 
     function totalFrequentRenterPoints() {
-        let result = 0;
-        for (let r of customer.rentals) {
-            result += frequentRenterPointsFor(r);
-        }
-        return result;
+        return customer.rentals
+            .map((rental) => frequentRenterPointsFor(rental))
+            .reduce((a, b) => a + b);
     }
 
     function movieFor(rental) {
