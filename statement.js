@@ -4,7 +4,7 @@ function statement(customer, movies) {
     let result = `Rental Record for ${customer.name}\n`;
     for (let r of customer.rentals) {
         const thisAmount = amountFor(r);
-        frequentRenterPointsFor(r);
+        frequentRenterPoints += frequentRenterPointsFor(r);
 
         //print figures for this rental
         result += `\t${movieFor(r).title}\t${thisAmount}\n`;
@@ -45,9 +45,8 @@ function statement(customer, movies) {
     }
 
     function frequentRenterPointsFor(r) {
-        //add frequent renter points
-        frequentRenterPoints++;
-        // add bonus for a two day new release rental
-        if (movieFor(r).code === "new" && r.days > 2) frequentRenterPoints++;
+        let result = 1;
+        if (movieFor(r).code === "new" && r.days > 2) result++;
+        return result;
     }
 }
