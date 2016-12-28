@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Refactoring a JavaScript video store</title>
+    <script src="statement.js"></script>
+</head>
+<body>
+    <pre id="output"></pre>
+    <script>
+        const customer = {
+            "name": "martin",
+            "rentals": [
+                {"movieID": "F001", "days": 3},
+                {"movieID": "F002", "days": 1},
+            ]
+        };
+
+        const movies = {
+            "F001": {"title": "Ran",                     "code": "regular"},
+            "F002": {"title": "Trois Couleurs: Bleu",     "code": "regular"}
+        };
+
+        const output = document.querySelector('#output');
+        output.innerHTML = statement(customer, movies);
+    </script>
+</body>
+</html>
