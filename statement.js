@@ -20,33 +20,29 @@ function statement(customer, movies) {
         return movies[rental.movieID];
     }
 
-    function amountFor(r) {
-        let thisAmount = 0;
-
-        // determine amount for each movie
-        switch (movieFor(r).code) {
+    function amountFor(rental) {
+        let result = 0;
+        switch (movieFor(rental).code) {
             case "regular":
-                thisAmount = 2;
-                if (r.days > 2) {
-                    thisAmount += (r.days - 2) * 1.5;
+                result = 2;
+                if (rental.days > 2) {
+                    result += (rental.days - 2) * 1.5;
                 }
-                break;
+                return result;
             case "new":
-                thisAmount = r.days * 3;
-                break;
+                result = rental.days * 3;
+                return result;
             case "childrens":
-                thisAmount = 1.5;
-                if (r.days > 3) {
-                    thisAmount += (r.days - 3) * 1.5;
+                result = 1.5;
+                if (rental.days > 3) {
+                    result += (rental.days - 3) * 1.5;
                 }
-                break;
+                return result;
         }
-        return thisAmount;
+        return result;
     }
 
-    function frequentRenterPointsFor(r) {
-        let result = 1;
-        if (movieFor(r).code === "new" && r.days > 2) result++;
-        return result;
+    function frequentRenterPointsFor(rental) {
+        return (movieFor(rental).code === "new" && rental.days > 2) ? 2 : 1;
     }
 }
